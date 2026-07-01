@@ -1,0 +1,177 @@
+import type { Industry } from "@/types/proposal";
+
+export type IndustryPreset = {
+  label: string;
+  slogan: string;
+  description: string;
+  services: string[];
+  strengths: string[];
+  customerConcerns: string[];
+  contentKeywords: string[];
+  recommendedPages: string[];
+  primarySections: string[];
+  sitePersonality: string;
+  visualDirection: string;
+  ctaLabel: string;
+};
+
+export const industryPresets: Record<Industry, IndustryPreset> = {
+  it: {
+    label: "IT・ソフトウェア",
+    slogan: "現場の課題を、使い続けられるテクノロジーへ。",
+    description: "業務効率化、AI導入、Webシステム開発を通じて、現場で本当に使われるデジタル施策を設計します。",
+    services: ["AI導入支援", "業務システム開発", "Webアプリ開発", "クラウド連携"],
+    strengths: ["要件整理から実装まで一貫対応", "現場運用を見据えたUI設計", "公開後の改善提案"],
+    customerConcerns: ["業務が属人化している", "既存ツールが使いにくい", "AI活用の進め方がわからない"],
+    contentKeywords: ["DX支援", "AI活用", "業務自動化", "セキュアな運用"],
+    recommendedPages: ["トップページ", "サービス紹介", "導入事例", "開発プロセス", "お問い合わせ"],
+    primarySections: ["課題整理", "AI/DX支援", "開発体制", "セキュリティ", "導入事例"],
+    sitePersonality: "SaaS・AIプロダクトサイトのように、機能価値、導入メリット、技術力が短時間で伝わる構成",
+    visualDirection: "余白を広く取り、プロダクト画面風のカード、導入フロー、技術キーワードを組み合わせる先進的なデザイン",
+    ctaLabel: "DX相談を申し込む",
+  },
+  manufacturing: {
+    label: "製造業",
+    slogan: "技術力と品質を、伝わる企業サイトへ。",
+    description: "製品、加工技術、品質管理体制をわかりやすく整理し、新規取引や採用につながる情報発信を支援します。",
+    services: ["製品紹介", "設備紹介", "品質管理", "技術資料掲載"],
+    strengths: ["技術情報を整理して見せる構成", "BtoB取引先向けの信頼設計", "採用にも使える会社紹介"],
+    customerConcerns: ["技術力が伝わりにくい", "問い合わせの質を上げたい", "古い会社サイトを刷新したい"],
+    contentKeywords: ["品質保証", "加工技術", "設備力", "納期対応"],
+    recommendedPages: ["トップページ", "技術・設備紹介", "製品紹介", "品質管理", "お問い合わせ"],
+    primarySections: ["加工技術", "設備紹介", "品質管理", "納品体制", "取引実績"],
+    sitePersonality: "BtoB製造業サイトとして、技術力、品質管理、設備力、取引前の安心感を丁寧に見せる構成",
+    visualDirection: "写真や図面を想起させる大きな情報ブロック、仕様表、品質指標を組み合わせた堅実なデザイン",
+    ctaLabel: "製品・加工について相談する",
+  },
+  retail: {
+    label: "小売・EC",
+    slogan: "商品の魅力を、購入につながる体験へ。",
+    description: "商品一覧、カテゴリ、キャンペーン、購入導線を整理し、スマートフォンでも買いやすいサイトを設計します。",
+    services: ["商品一覧", "カテゴリ設計", "決済導線", "キャンペーン掲載"],
+    strengths: ["購入まで迷わない導線", "商品価値が伝わる見せ方", "運用しやすい商品管理"],
+    customerConcerns: ["商品数が多く整理できない", "スマホで購入しにくい", "リピート購入を増やしたい"],
+    contentKeywords: ["おすすめ商品", "ランキング", "配送案内", "レビュー"],
+    recommendedPages: ["トップページ", "商品一覧", "商品詳細", "購入ガイド", "お問い合わせ"],
+    primarySections: ["おすすめ商品", "カテゴリ導線", "ランキング", "レビュー", "購入ステップ"],
+    sitePersonality: "EC・小売サイトとして、商品を探しやすく、比較しやすく、購入に進みやすい構成",
+    visualDirection: "商品カード、カテゴリナビ、キャンペーン枠、購入CTAを目立たせる明快なコマースデザイン",
+    ctaLabel: "商品を見る",
+  },
+  restaurant: {
+    label: "飲食店",
+    slogan: "お店の空気感を、予約したくなるサイトへ。",
+    description: "メニュー、店内の雰囲気、アクセス、予約導線を整理し、来店前の期待感を高めます。",
+    services: ["メニュー紹介", "店舗紹介", "予約導線", "アクセス掲載"],
+    strengths: ["料理と雰囲気が伝わる構成", "スマホから予約しやすい導線", "最新情報の更新"],
+    customerConcerns: ["初めての来店につながらない", "メニューを見やすくしたい", "予約導線を強化したい"],
+    contentKeywords: ["ランチ", "ディナー", "季節メニュー", "席予約"],
+    recommendedPages: ["トップページ", "メニュー", "店舗紹介", "アクセス・予約", "お問い合わせ"],
+    primarySections: ["人気メニュー", "店内の雰囲気", "季節メニュー", "予約導線", "アクセス"],
+    sitePersonality: "飲食店サイトとして、料理の魅力、店内の空気感、予約しやすさを中心にした構成",
+    visualDirection: "メニュー写真を想起させる大きなビジュアル、営業時間、地図、予約CTAを自然に配置するデザイン",
+    ctaLabel: "席を予約する",
+  },
+  beauty: {
+    label: "美容・サロン",
+    slogan: "安心して予約できる、上質なサロン体験を。",
+    description: "施術メニュー、スタッフ、料金、予約導線を整理し、初めての方でも不安なく予約できるサイトを設計します。",
+    services: ["施術メニュー", "スタッフ紹介", "料金表", "オンライン予約"],
+    strengths: ["雰囲気が伝わるビジュアル設計", "メニュー選びを助ける情報整理", "予約までの導線最適化"],
+    customerConcerns: ["初回予約の不安を減らしたい", "メニューの違いを伝えたい", "リピート率を高めたい"],
+    contentKeywords: ["カウンセリング", "施術事例", "料金", "予約"],
+    recommendedPages: ["トップページ", "メニュー・料金", "スタッフ紹介", "施術事例", "予約"],
+    primarySections: ["施術メニュー", "料金表", "スタッフ", "カウンセリング", "予約導線"],
+    sitePersonality: "美容・サロンサイトとして、上質感、安心感、初回予約のしやすさを重視した構成",
+    visualDirection: "柔らかい余白、料金カード、スタッフ紹介、施術前後のイメージを整理した上品なデザイン",
+    ctaLabel: "予約する",
+  },
+  medical: {
+    label: "医療・クリニック",
+    slogan: "安心して相談できる医療情報を、わかりやすく。",
+    description: "診療内容、医師紹介、予約、アクセスを整理し、患者さまが安心して来院を検討できるサイトを設計します。",
+    services: ["診療案内", "医師紹介", "予約案内", "アクセス"],
+    strengths: ["清潔感と信頼感のある設計", "診療内容のわかりやすい整理", "予約・来院導線の明確化"],
+    customerConcerns: ["診療内容を正しく伝えたい", "初診予約を増やしたい", "アクセス情報を見やすくしたい"],
+    contentKeywords: ["診療時間", "初診案内", "専門診療", "アクセス"],
+    recommendedPages: ["トップページ", "診療案内", "医師紹介", "初診案内", "予約・アクセス"],
+    primarySections: ["診療内容", "医師紹介", "診療時間", "初診の流れ", "アクセス"],
+    sitePersonality: "医療・クリニックサイトとして、清潔感、信頼性、初診前の不安解消を最優先にした構成",
+    visualDirection: "読みやすい診療カード、診療時間表、医師紹介、予約ボタンを落ち着いた配色で配置するデザイン",
+    ctaLabel: "診療予約をする",
+  },
+  realEstate: {
+    label: "不動産",
+    slogan: "物件探しから相談まで、信頼できる導線を。",
+    description: "物件情報、エリア紹介、売買・賃貸相談、実績を整理し、問い合わせにつながるサイトを設計します。",
+    services: ["物件紹介", "売買相談", "賃貸相談", "エリア情報"],
+    strengths: ["条件検索を意識した情報設計", "地域密着の強みを表現", "相談につながるCTA設計"],
+    customerConcerns: ["物件情報を見やすくしたい", "地域の信頼感を出したい", "問い合わせ数を増やしたい"],
+    contentKeywords: ["物件検索", "エリア情報", "査定相談", "来店予約"],
+    recommendedPages: ["トップページ", "物件一覧", "エリア情報", "売買・賃貸相談", "お問い合わせ"],
+    primarySections: ["物件検索", "おすすめ物件", "エリア紹介", "査定相談", "来店予約"],
+    sitePersonality: "不動産サイトとして、物件を探す体験と相談導線を両立した構成",
+    visualDirection: "物件カード、条件検索風UI、エリア情報、相談CTAを組み合わせた実用的なデザイン",
+    ctaLabel: "物件について相談する",
+  },
+  education: {
+    label: "教育・スクール",
+    slogan: "学びの価値を、体験申し込みにつなげる。",
+    description: "コース内容、講師、実績、無料体験導線を整理し、受講前の不安を減らすサイトを設計します。",
+    services: ["コース紹介", "講師紹介", "受講実績", "無料体験"],
+    strengths: ["学習成果が伝わる構成", "対象者別に選びやすいコース設計", "体験申し込み導線"],
+    customerConcerns: ["コースの違いを伝えたい", "無料体験を増やしたい", "保護者や受講者に安心感を出したい"],
+    contentKeywords: ["カリキュラム", "講師", "合格実績", "無料体験"],
+    recommendedPages: ["トップページ", "コース紹介", "講師紹介", "実績・合格体験", "無料体験"],
+    primarySections: ["コース一覧", "学習の流れ", "講師紹介", "成果・実績", "無料体験"],
+    sitePersonality: "教育・スクールサイトとして、学習成果、講師の安心感、体験申し込みを中心にした構成",
+    visualDirection: "コースカード、対象者別導線、実績数値、無料体験CTAを明るく整理したデザイン",
+    ctaLabel: "無料体験を申し込む",
+  },
+  finance: {
+    label: "金融・士業",
+    slogan: "専門性を、信頼できる相談導線へ。",
+    description: "専門サービス、相談内容、実績、料金目安を整理し、安心して問い合わせできるサイトを設計します。",
+    services: ["相談メニュー", "専門分野紹介", "実績掲載", "資料ダウンロード"],
+    strengths: ["専門性と誠実さを伝える構成", "相談前の不安を減らすFAQ", "法人向けの信頼設計"],
+    customerConcerns: ["専門性が伝わりにくい", "初回相談につなげたい", "料金や流れを明確にしたい"],
+    contentKeywords: ["初回相談", "料金目安", "専門分野", "実績"],
+    recommendedPages: ["トップページ", "専門サービス", "相談の流れ", "実績・事例", "初回相談"],
+    primarySections: ["専門分野", "相談メニュー", "料金目安", "実績", "FAQ"],
+    sitePersonality: "金融・士業サイトとして、専門性、誠実さ、相談前の不安解消を重視した構成",
+    visualDirection: "落ち着いた配色、相談メニュー、料金目安、FAQを整理した信頼重視のデザイン",
+    ctaLabel: "初回相談を予約する",
+  },
+  recruitment: {
+    label: "採用・人材",
+    slogan: "人と企業の出会いを、信頼できる体験へ。",
+    description: "求人情報、支援内容、実績、登録導線を整理し、求職者と企業双方に伝わるサイトを設計します。",
+    services: ["求人掲載", "人材紹介", "採用支援", "登録フォーム"],
+    strengths: ["求職者目線の導線設計", "企業向け支援内容の整理", "実績と安心感の表現"],
+    customerConcerns: ["登録数を増やしたい", "支援内容をわかりやすくしたい", "企業からの問い合わせを増やしたい"],
+    contentKeywords: ["求人情報", "転職支援", "採用相談", "登録"],
+    recommendedPages: ["トップページ", "求人情報", "転職支援", "企業向けサービス", "相談・登録"],
+    primarySections: ["求人検索", "支援の流れ", "企業向け採用支援", "成功事例", "登録CTA"],
+    sitePersonality: "採用・人材サイトとして、求職者と企業の両方に向けた導線を分けて設計する構成",
+    visualDirection: "求人カード、支援フロー、登録CTA、企業向け相談導線をバランスよく配置するデザイン",
+    ctaLabel: "相談・登録する",
+  },
+  other: {
+    label: "その他",
+    slogan: "事業の価値を、伝わるWeb体験へ。",
+    description: "事業内容、強み、問い合わせ導線を整理し、初めて訪問したユーザーにも価値が伝わるサイトを設計します。",
+    services: ["事業紹介", "サービス紹介", "実績掲載", "お問い合わせ"],
+    strengths: ["目的に合わせた情報設計", "わかりやすい導線", "公開後の改善提案"],
+    customerConcerns: ["何を掲載すべきかわからない", "問い合わせにつなげたい", "事業の強みを整理したい"],
+    contentKeywords: ["事業内容", "強み", "導入事例", "相談"],
+    recommendedPages: ["トップページ", "事業紹介", "サービス紹介", "実績紹介", "お問い合わせ"],
+    primarySections: ["事業内容", "選ばれる理由", "サービス", "実績", "お問い合わせ"],
+    sitePersonality: "事業内容を初めて見る人にもわかりやすく伝え、問い合わせへ自然につなげる構成",
+    visualDirection: "会社の強み、サービス、実績、相談導線をシンプルに整理した汎用性の高いデザイン",
+    ctaLabel: "相談する",
+  },
+};
+
+export function findIndustryPreset(industryLabel: string) {
+  return Object.values(industryPresets).find((preset) => preset.label === industryLabel) ?? industryPresets.other;
+}
