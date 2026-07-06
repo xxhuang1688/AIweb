@@ -32,7 +32,7 @@
 - `/demo-preview` で現在選択中のデモHTMLを別ページ表示
 - 開発段階ではデモ生成回数の制限なし
 - 手動決済申込み時に、注文番号、デモHTML、Proposal JSON、認証コードをサーバー上に保存
-- 見積もり、制作期間、SyncCraft割引、デモ構成をまとめた制作提案レポートPDFを自動生成
+- 見積もり、制作期間、SyncCraft割引、デモ構成をまとめた制作提案書Wordを自動生成
 - `/download/[orderId]` で、認証コード入力後に制作データをダウンロード
 
 現在のフロントエンドは `syncCraft` Provider を呼び出します。APIキー未設定時は明確なエラーを返します。OpenAI、Claude、Gemini、OpenRouter などを追加する場合も、Agent 本体ではなく Provider を追加します。

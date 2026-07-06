@@ -1,5 +1,6 @@
 import { mkdir, readFile, writeFile } from "fs/promises";
 import path from "path";
+import { buildProposalWordReport } from "@/lib/reportWord";
 import type { DemoGenerationResponse } from "@/types/agent";
 import type { ManualPaymentStoredOrder } from "@/types/manualPayment";
 import type { ProposalJson } from "@/types/proposal";
@@ -76,6 +77,16 @@ export async function saveManualPaymentOrder(input: {
     path.join(directory, "demo-result.json"),
     `${JSON.stringify(input.demo, null, 2)}\n`,
     "utf8",
+  );
+
+  files.push({
+    fileName: "proposal-report.docx",
+    label: "制作提案書 Word",
+    contentType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  });
+  await writeFile(
+    path.join(directory, "proposal-report.docx"),
+    buildProposalWordReport(input),
   );
 
   const previewPages = input.demo.result?.previewPages ?? [];

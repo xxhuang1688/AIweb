@@ -162,7 +162,7 @@ function PreparationProgressPanel({
         />
       </div>
       <p className="mt-3 text-xs leading-5 text-zinc-500">
-        入力内容、必要機能、ページ構成をもとに、Demo HTML、PDFレポート、Proposal JSONをまとめて準備しています。
+        入力内容、必要機能、ページ構成をもとに、Demo HTML、制作提案書 Word、Proposal JSONをまとめて準備しています。
       </p>
     </div>
   );
@@ -598,7 +598,7 @@ export function ResultView({ initialProposal }: { initialProposal: ProposalJson 
                 <li><span className="font-semibold text-zinc-950">1.</span> メールアドレスと支払い名義を入力し、注文番号とデモデータを準備します。</li>
                 <li><span className="font-semibold text-zinc-950">2.</span> 表示された注文番号を控え、銀行振込またはPayPayで990円をお支払いください。</li>
                 <li><span className="font-semibold text-zinc-950">3.</span> 支払い後、ページ上のボタンから確認メールを送信します。</li>
-                <li><span className="font-semibold text-zinc-950">4.</span> 入金確認後、注文ステータスページで認証コードを確認し、PDF・HTML・JSONをダウンロードできます。</li>
+                <li><span className="font-semibold text-zinc-950">4.</span> 入金確認後、注文ステータスページで認証コードを確認し、Word提案書・HTML・JSONをダウンロードできます。</li>
               </ol>
               <div className="mt-5 rounded-2xl bg-amber-50 p-4 text-sm leading-6 text-amber-800">
                 これは自動決済ではありません。入金確認は手動で行います。正式な商用運用では、StripeまたはPayPayオンライン決済への移行を予定しています。
@@ -873,7 +873,7 @@ export function ResultView({ initialProposal }: { initialProposal: ProposalJson 
           <div className="mt-5 rounded-2xl bg-black/40 p-5 text-sm leading-6 text-zinc-100">
             <p className="font-semibold">ダウンロード内容</p>
             <ul className="mt-3 grid gap-2 text-zinc-300">
-              <li>制作提案レポート PDF</li>
+              <li>制作提案書 Word</li>
               <li>Proposal JSON</li>
               <li>生成デモサイトHTML</li>
               <li>制作プラン概要</li>

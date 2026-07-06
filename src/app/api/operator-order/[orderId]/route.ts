@@ -59,7 +59,7 @@ function buildReplyText(input: {
     `認証コード：${input.accessCode}`,
     "",
     "ダウンロード内容：",
-    "・制作提案レポート PDF",
+    "・制作提案書 Word",
     "・Proposal JSON",
     "・デモサイトHTML",
     "・デモ生成結果",
