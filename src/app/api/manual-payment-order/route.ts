@@ -156,6 +156,7 @@ export async function POST(request: Request) {
     const amount = amountJpy();
     const payment = paymentConfig();
     const downloadUrl = `/download/${orderId}`;
+    const fullDownloadUrl = `${new URL(request.url).origin}${downloadUrl}`;
     const customerToken = createCustomerToken();
     const statusUrl = `/order-status/${orderId}?token=${customerToken}`;
     const fullStatusUrl = `${new URL(request.url).origin}${statusUrl}`;
@@ -225,8 +226,8 @@ export async function POST(request: Request) {
         createdAt,
         demoPrepared: true,
         fileCount: storedOrder.files.length,
-        downloadUrl,
-        statusUrl,
+        downloadUrl: fullDownloadUrl,
+        statusUrl: fullStatusUrl,
       },
       payment,
       mailtoUrl,
