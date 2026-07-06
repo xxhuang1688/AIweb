@@ -79,19 +79,6 @@ export async function saveManualPaymentOrder(input: {
     "utf8",
   );
 
-  const reportPdf = await buildProposalReportPdf({
-    order: input.order,
-    proposal: input.proposal,
-    demo: input.demo,
-  });
-
-  await writeFile(path.join(directory, "proposal-report.pdf"), reportPdf);
-  files.push({
-    fileName: "proposal-report.pdf",
-    label: "制作提案レポート PDF",
-    contentType: "application/pdf",
-  });
-
   const previewPages = input.demo.result?.previewPages ?? [];
 
   if (previewPages.length > 0) {
@@ -124,6 +111,39 @@ export async function saveManualPaymentOrder(input: {
     `${JSON.stringify(storedOrder, null, 2)}\n`,
     "utf8",
   );
+
+  void buildProposalReportPdf({
+    order: storedOrder,
+    proposal: input.proposal,
+    demo: input.demo,
+  }).then(async (reportPdf) => {
+    await writeFile(path.join(directory, "proposal-report.pdf"), reportPdf);
+
+    const latestOrder = await readManualPaymentOrder(input.order.orderId).catch(() => storedOrder);
+    const hasReport = latestOrder.files.some((file) => file.fileName === "proposal-report.pdf");
+
+    if (!hasReport) {
+      const orderWithReport: ManualPaymentStoredOrder = {
+        ...latestOrder,
+        files: [
+          ...latestOrder.files,
+          {
+            fileName: "proposal-report.pdf",
+            label: "制作提案レポート PDF",
+            contentType: "application/pdf",
+          },
+        ],
+      };
+
+      await writeFile(
+        path.join(directory, "order.json"),
+        `${JSON.stringify(orderWithReport, null, 2)}\n`,
+        "utf8",
+      );
+    }
+  }).catch((error) => {
+    console.error("proposal report PDF generation failed", error);
+  });
 
   return storedOrder;
 }
