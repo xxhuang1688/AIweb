@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { runDemoGenerationAgent } from "@/lib/agent/demoAgent";
 import { validateProposalJson } from "@/lib/agent/proposalValidator";
 import { createAccessCode, createCustomerToken, saveManualPaymentOrder } from "@/lib/manualPaymentStorage";
+import { getRequestOrigin } from "@/lib/requestOrigin";
 import type { ManualPaymentMethod, ManualPaymentOrderRequest, ManualPaymentOrderResponse } from "@/types/manualPayment";
 
 export const runtime = "nodejs";
@@ -155,12 +156,13 @@ export async function POST(request: Request) {
     const createdAt = new Date().toISOString();
     const amount = amountJpy();
     const payment = paymentConfig();
+    const origin = getRequestOrigin(request);
     const downloadUrl = `/download/${orderId}`;
-    const fullDownloadUrl = `${new URL(request.url).origin}${downloadUrl}`;
+    const fullDownloadUrl = `${origin}${downloadUrl}`;
     const customerToken = createCustomerToken();
     const statusUrl = `/order-status/${orderId}?token=${customerToken}`;
-    const fullStatusUrl = `${new URL(request.url).origin}${statusUrl}`;
-    const operatorUrl = `${new URL(request.url).origin}/operator/orders/${orderId}`;
+    const fullStatusUrl = `${origin}${statusUrl}`;
+    const operatorUrl = `${origin}/operator/orders/${orderId}`;
     const demo = await runDemoGenerationAgent({ proposal, provider: "mock" });
 
     if (demo.status !== "generated") {

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { confirmManualPaymentOrder, readManualPaymentOrder } from "@/lib/manualPaymentStorage";
+import { getRequestOrigin } from "@/lib/requestOrigin";
 
 export const runtime = "nodejs";
 
@@ -98,7 +99,7 @@ export async function GET(request: Request, context: RouteContext<"/api/operator
     const { orderId } = await context.params;
     const order = await readManualPaymentOrder(orderId);
 
-    return NextResponse.json(buildOrderResponse({ origin: url.origin, order }));
+    return NextResponse.json(buildOrderResponse({ origin: getRequestOrigin(request), order }));
   } catch {
     return NextResponse.json({
       status: "not_found",
@@ -135,9 +136,8 @@ export async function POST(request: Request, context: RouteContext<"/api/operato
   try {
     const { orderId } = await context.params;
     const order = await confirmManualPaymentOrder(orderId);
-    const url = new URL(request.url);
 
-    return NextResponse.json(buildOrderResponse({ origin: url.origin, order }));
+    return NextResponse.json(buildOrderResponse({ origin: getRequestOrigin(request), order }));
   } catch {
     return NextResponse.json({
       status: "not_found",

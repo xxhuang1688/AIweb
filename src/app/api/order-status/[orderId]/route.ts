@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { readManualPaymentOrder } from "@/lib/manualPaymentStorage";
+import { getRequestOrigin } from "@/lib/requestOrigin";
 
 export const runtime = "nodejs";
 
@@ -20,6 +21,7 @@ export async function GET(request: Request, context: RouteContext<"/api/order-st
     }
 
     const confirmed = order.status === "confirmed";
+    const origin = getRequestOrigin(request);
 
     return NextResponse.json({
       status: confirmed ? "confirmed" : "pending",
@@ -31,7 +33,7 @@ export async function GET(request: Request, context: RouteContext<"/api/order-st
         createdAt: order.createdAt,
         confirmedAt: order.confirmedAt ?? null,
         fileCount: order.files.length,
-        downloadUrl: confirmed ? `${url.origin}${order.downloadUrl}` : null,
+        downloadUrl: confirmed ? `${origin}${order.downloadUrl}` : null,
         accessCode: confirmed ? order.accessCode : null,
       },
     });
