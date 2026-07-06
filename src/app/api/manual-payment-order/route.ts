@@ -160,7 +160,7 @@ export async function POST(request: Request) {
     const statusUrl = `/order-status/${orderId}?token=${customerToken}`;
     const fullStatusUrl = `${new URL(request.url).origin}${statusUrl}`;
     const operatorUrl = `${new URL(request.url).origin}/operator/orders/${orderId}`;
-    const demo = await runDemoGenerationAgent({ proposal, provider: "syncCraft" });
+    const demo = await runDemoGenerationAgent({ proposal, provider: "mock" });
 
     if (demo.status !== "generated") {
       return NextResponse.json(
