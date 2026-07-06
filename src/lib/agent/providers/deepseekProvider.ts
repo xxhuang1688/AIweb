@@ -323,7 +323,7 @@ export const deepSeekProvider: AiProvider = {
     const fallbackPlan = buildDemoPlan(input.proposal);
     const baseUrl = process.env.DEEPSEEK_BASE_URL ?? "https://api.deepseek.com";
     const apiModel = process.env.DEEPSEEK_MODEL ?? "deepseek-v4-flash";
-    const timeoutMs = Number(process.env.SYNC_CRAFT_PROVIDER_TIMEOUT_MS ?? 45000);
+    const timeoutMs = Number(process.env.SYNC_CRAFT_PROVIDER_TIMEOUT_MS ?? 120000);
     const response = await fetch(`${baseUrl.replace(/\/$/, "")}/chat/completions`, {
       body: JSON.stringify({
         model: apiModel,
