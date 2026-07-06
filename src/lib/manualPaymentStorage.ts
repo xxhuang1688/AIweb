@@ -112,38 +112,40 @@ export async function saveManualPaymentOrder(input: {
     "utf8",
   );
 
-  void buildProposalReportPdf({
-    order: storedOrder,
-    proposal: input.proposal,
-    demo: input.demo,
-  }).then(async (reportPdf) => {
-    await writeFile(path.join(directory, "proposal-report.pdf"), reportPdf);
+  setTimeout(() => {
+    void buildProposalReportPdf({
+      order: storedOrder,
+      proposal: input.proposal,
+      demo: input.demo,
+    }).then(async (reportPdf) => {
+      await writeFile(path.join(directory, "proposal-report.pdf"), reportPdf);
 
-    const latestOrder = await readManualPaymentOrder(input.order.orderId).catch(() => storedOrder);
-    const hasReport = latestOrder.files.some((file) => file.fileName === "proposal-report.pdf");
+      const latestOrder = await readManualPaymentOrder(input.order.orderId).catch(() => storedOrder);
+      const hasReport = latestOrder.files.some((file) => file.fileName === "proposal-report.pdf");
 
-    if (!hasReport) {
-      const orderWithReport: ManualPaymentStoredOrder = {
-        ...latestOrder,
-        files: [
-          ...latestOrder.files,
-          {
-            fileName: "proposal-report.pdf",
-            label: "制作提案レポート PDF",
-            contentType: "application/pdf",
-          },
-        ],
-      };
+      if (!hasReport) {
+        const orderWithReport: ManualPaymentStoredOrder = {
+          ...latestOrder,
+          files: [
+            ...latestOrder.files,
+            {
+              fileName: "proposal-report.pdf",
+              label: "制作提案レポート PDF",
+              contentType: "application/pdf",
+            },
+          ],
+        };
 
-      await writeFile(
-        path.join(directory, "order.json"),
-        `${JSON.stringify(orderWithReport, null, 2)}\n`,
-        "utf8",
-      );
-    }
-  }).catch((error) => {
-    console.error("proposal report PDF generation failed", error);
-  });
+        await writeFile(
+          path.join(directory, "order.json"),
+          `${JSON.stringify(orderWithReport, null, 2)}\n`,
+          "utf8",
+        );
+      }
+    }).catch((error) => {
+      console.error("proposal report PDF generation failed", error);
+    });
+  }, 2000);
 
   return storedOrder;
 }
